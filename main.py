@@ -31,7 +31,20 @@ class TaskManagerApp(App):
         root_layout.add_widget(self.task_scrollview)
         root_layout.add_widget(self.history_scrollview)
 
+        # Agrega el botón de mostrar/ocultar historial
+        self.toggle_history_button = Button(text='Ocultar Historial', on_press=self.toggle_history, size_hint=(1, None), height=30)
+        root_layout.add_widget(self.toggle_history_button)
+
+
         return root_layout
+    
+    def toggle_history(self, instance):
+        if self.history_layout.opacity == 1:
+            self.history_layout.opacity = 0
+            self.toggle_history_button.text = 'Mostrar Historial'
+        else:
+            self.history_layout.opacity = 1
+            self.toggle_history_button.text = 'Ocultar Historial'
 
     def show_priority_buttons(self, instance):
         content = BoxLayout(orientation='vertical', spacing=10)
